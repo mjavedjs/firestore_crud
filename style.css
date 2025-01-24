@@ -167,3 +167,12 @@ body {
     box-shadow: 0 0 5px rgba(72, 239, 111, 0.8); /* Green glow focus effect */
   }
   
+.u-btn{
+   display:none;
+}
+.show{
+   display: block;
+}
+.hide{
+   display:none;
+}

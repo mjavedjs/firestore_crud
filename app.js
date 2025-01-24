@@ -1,6 +1,6 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-  import { getFirestore,collection, addDoc ,getDocs,deleteDoc,doc} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+  import { getFirestore,collection, addDoc ,getDocs,deleteDoc,doc,getDoc} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 //   import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -100,6 +100,29 @@ window.deletMethod = async function(docId){
   
 };
 
-window.UpdateMethod = function(docId){
+window.UpdateMethod =  async function(docId){
+  try {
     alert(`The docId is ${docId}`);
+    const updatedSnapshot = await getDoc(doc(db,'user',docId));
+    const currentUser = updatedSnapshot.data();
+    console.log(currentUser.email);
+
+    document.querySelector("#name").value = currentUser.name;
+    document.querySelector("#email").value = currentUser.email;
+    document.querySelector("#password").value = currentUser.password;
+
+    const subtn = document.querySelector(".sub-btn");
+
+    const upbtn= document.querySelector(".u-btn");
+
+    upbtn.classList.add("show");
+
+    subtn.classList.add("hide");
+  
+
+  } 
+  catch(error){
+    console.log(error)
+  }
+   
 }
